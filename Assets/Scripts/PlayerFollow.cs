@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Make the camera follow the player and turn around the player when the mouse move.<
+/// </summary>
 public class PlayerFollow : MonoBehaviour
 {
 

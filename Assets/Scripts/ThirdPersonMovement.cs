@@ -4,9 +4,16 @@ using UnityEngine;
 
 public class ThirdPersonMovement : MonoBehaviour
 {
+
+    /// <summary>
+    /// Use to controle the character movement.
+    /// </summary>
     [SerializeField]
     private CharacterController controller;  
     
+    /// <summary>
+    /// Active the appropriate animation for the movement.
+    /// </summary>
     [SerializeField]
     private Animator animator;
 
@@ -49,6 +56,7 @@ public class ThirdPersonMovement : MonoBehaviour
    
     private void Update()
     {
+        // Check if the character is not in the mid air.
         groundedPlayer = controller.isGrounded;
         if (groundedPlayer && playerVelocity.y < 0)
         {
@@ -62,6 +70,7 @@ public class ThirdPersonMovement : MonoBehaviour
         SetFalseAnimation();
         if (direction.magnitude >= 0.1f)
         {
+            // Turn the character with the camera view.
             float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
             float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
             transform.rotation = Quaternion.Euler(0.0f, angle, 0.0f);
@@ -80,7 +89,7 @@ public class ThirdPersonMovement : MonoBehaviour
             }
         }
 
-        // Changes the height position of the player..
+        // Changes the height position of the player.
         if (Input.GetButtonDown("Jump") && groundedPlayer)
         {
             animator.SetTrigger("Jump");
